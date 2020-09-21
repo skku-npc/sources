@@ -5,50 +5,60 @@ struct merge_sort_tree
     int n;
     merge_sort_tree(int n): n(n)
     {
-        int sz = 1;
-        while(sz < n) sz <<= 1;
-        sz <<= 1;
-        tree.resize(sz);
+        tree.resize(2*n-1);
         a.resize(n);
     }
-
-    void init(int ns = 0, int ne = -1, int node = 1)//0, n-1, 1
+    void init()
     {
-        if (ne == -1) ne += n;
-        if (ns == ne)
+        for (int i = n - 1; i<2*n-1;++i)
         {
-            tree[node].resize(1);
-            tree[node][0] = a[ns];
-            return;
+            tree[i].resize(1);
+            tree[i][0] = a[i- (n - 1)];
         }
-        int mid = (ns + ne) / 2;
-        init(ns, mid, node * 2);
-        init(mid + 1, ne, node * 2 + 1);
-        tree[node].resize(tree[node * 2].size() + tree[node * 2 + 1].size());
-        merge(tree[node * 2].begin(), tree[node * 2].end(), tree[node * 2 + 1].begin(), tree[node * 2 + 1].end(),
-              tree[node].begin());
+        for (int i=n-2; i>=0; --i)
+        {
+            tree[i].resize(tree[i*2+1].size() + tree[i*2+2].size());
+            merge(tree[i*2+1].begin(), tree[i*2+1].end(), tree[i*2+2].begin(), tree[i*2+2].end(), tree[i].begin());
+        }
     }
-    int qry_ub(int qs, int qe, int val, int ns = 0, int ne = -1, int node = 1)//val 이하의 수가 몇개?
+    int qry_ub(int qs, int qe, int val)
     {
-        if (ne == -1) ne += n;
-        if (qs > ne || ns > qe) return 0;
-        if (qs <= ns && ne <= qe)
+        int ret = 0;
+        qs += n - 1;
+        qe += n;
+        for(; qs < qe; qs = (qs - 1) / 2, qe = (qe -1)/2)
         {
-            return upper_bound(tree[node].begin(), tree[node].end(), val) - tree[node].begin();
-        }
-        int mid = (ns + ne) / 2;
-        return qry_ub(qs, qe, val, ns, mid, node*2) + qry_ub(qs, qe, val, mid+1, ne, node*2+1);
+            if (qs%2 == 0)
+            {
+                ret += upper_bound(tree[qs].begin(), tree[qs].end(), val) - tree[qs].begin();
+                ++qe;
+            }
+            if (qe%2 == 0)
+            {
+                --qe;
+                ret += upper_bound(tree[qe].begin(), tree[qe].end(), val) - tree[qe].begin();
+            }
+        };
+        return ret;
     }
-
-    int qry_lb(int qs, int qe, int val, int ns = 0, int ne = -1, int node = 1)//val 미만의 수가 몇개?
+    int qry_lb(int qs, int qe, int val)
     {
-        if (ne == -1) ne += n;
-        if (qs > ne || ns > qe) return 0;
-        if (qs <= ns && ne <= qe)
+        int ret = 0;
+        qs += n - 1;
+        qe += n;
+        for(; qs < qe; qs = (qs - 1) / 2, qe = (qe -1)/2)
         {
-            return lower_bound(tree[node].begin(), tree[node].end(), val) - tree[node].begin();
+            if (qs%2 == 0)
+            {
+                ret += lower_bound(tree[qs].begin(), tree[qs].end(), val) - tree[qs].begin();
+                ++qs;
+            }
+            if (qe%2 == 0)
+            {
+                --qe;
+                ret += lower_bound(tree[qe].begin(), tree[qe].end(), val) - tree[qe].begin();
+            }
         }
-        int mid = (ns + ne) / 2;
-        return qry_lb(qs, qe, val, ns, mid, node*2) + qry_lb(qs, qe, val, mid+1, ne, node*2+1);
+        return ret;
     }
 };
