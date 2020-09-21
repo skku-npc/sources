@@ -12,8 +12,9 @@ struct merge_sort_tree
         a.resize(n);
     }
 
-    void init(int ns, int ne, int node)//0, n-1, 1
+    void init(int ns = 0, int ne = -1, int node = 1)//0, n-1, 1
     {
+        if (ne == -1) ne += n;
         if (ns == ne)
         {
             tree[node].resize(1);
@@ -27,31 +28,27 @@ struct merge_sort_tree
         merge(tree[node * 2].begin(), tree[node * 2].end(), tree[node * 2 + 1].begin(), tree[node * 2 + 1].end(),
               tree[node].begin());
     }
-    int qry_ub(int ns, int ne, int node, int qs, int qe, int val)//val 이하의 수가 몇개?
+    int qry_ub(int qs, int qe, int val, int ns = 0, int ne = -1, int node = 1)//val 이하의 수가 몇개?
     {
+        if (ne == -1) ne += n;
         if (qs > ne || ns > qe) return 0;
         if (qs <= ns && ne <= qe)
         {
-            int m = upper_bound(tree[node].begin(), tree[node].end(), val) - tree[node].begin();
-            return m;
+            return upper_bound(tree[node].begin(), tree[node].end(), val) - tree[node].begin();
         }
         int mid = (ns + ne) / 2;
-        int t1 = qry_ub(ns, mid, node * 2, qs, qe, val);
-        int t2 = qry_ub(mid + 1, ne, node * 2 + 1, qs, qe, val);
-        return t1 + t2;
+        return qry_ub(qs, qe, val, ns, mid, node*2) + qry_ub(qs, qe, val, mid+1, ne, node*2+1);
     }
 
-    int qry_lb(int ns, int ne, int node, int qs, int qe, int val)//val 미만의 수가 몇개?
+    int qry_lb(int qs, int qe, int val, int ns = 0, int ne = -1, int node = 1)//val 미만의 수가 몇개?
     {
+        if (ne == -1) ne += n;
         if (qs > ne || ns > qe) return 0;
         if (qs <= ns && ne <= qe)
         {
-            int m = lower_bound(tree[node].begin(), tree[node].end(), val) - tree[node].begin();
-            return m;
+            return lower_bound(tree[node].begin(), tree[node].end(), val) - tree[node].begin();
         }
         int mid = (ns + ne) / 2;
-        int t1 = qry_lb(ns, mid, node * 2, qs, qe, val);
-        int t2 = qry_lb(mid + 1, ne, node * 2 + 1, qs, qe, val);
-        return t1 + t2;
+        return qry_lb(qs, qe, val, ns, mid, node*2) + qry_lb(qs, qe, val, mid+1, ne, node*2+1);
     }
 };
