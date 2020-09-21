@@ -2,7 +2,8 @@ struct merge_sort_tree
 {
     vector<vector<int>> tree;
     vector<int> a;
-    merge_sort_tree(int n)
+    int n;
+    merge_sort_tree(int n): n(n)
     {
         int sz = 1;
         while(sz < n) sz <<= 1;
