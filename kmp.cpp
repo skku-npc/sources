@@ -1,3 +1,4 @@
+//문자열 길이 >= 1
 void get_fail(const char* p, int len, vector<int>& fail)//xxxa..xxx f[end of x] => a, //0based
 {
     fail.resize(len);
