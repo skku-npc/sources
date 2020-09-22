@@ -30,12 +30,12 @@ struct merge_sort_tree
         int ret = 0;
         qs += base;
         qe += base+1;
-        for(; qs < qe; qs = (qs - 1) / 2, qe = (qe -1)/2)
+        for(; qs < qe; qs = (qs - 1) / 2, qe = qe/2)
         {
             if (qs%2 == 0)
             {
                 ret += upper_bound(tree[qs].begin(), tree[qs].end(), val) - tree[qs].begin();
-                ++qe;
+                ++qs;
             }
             if (qe%2 == 0)
             {
@@ -50,7 +50,7 @@ struct merge_sort_tree
         int ret = 0;
         qs += base;
         qe += base+1;
-        for(; qs < qe; qs = (qs - 1) / 2, qe = (qe -1)/2)
+        for(; qs < qe; qs = (qs - 1) / 2, qe = qe/2)
         {
             if (qs%2 == 0)
             {
