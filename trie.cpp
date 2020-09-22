@@ -37,7 +37,7 @@ struct trie
             }
             v_idx = data[v_idx].nxt[conv(str[idx])];
         }
-        data[v_idx].finish = size++;
+        data[v_idx].finish = size++;//만약 중복된 단어가 들어올 수 있다면, 각 노드별로 count변수를 만들어야 한다.
     }
     int retrieve(const char* str) //찾지 못하면 -1, 찾았다면 add되었던 순서를 리턴(0부터 시작)
     {
