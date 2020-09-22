@@ -1,6 +1,6 @@
 struct trie
 {
-    char conv(char c)
+    int conv(char c)// 상황에 따라 잘 처리해준다.
     {
         return c - 'a';
     }
