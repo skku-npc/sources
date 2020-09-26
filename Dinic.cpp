@@ -24,21 +24,20 @@ struct Dinic {
         adj[b].emplace_back(a, cap_inv, adj[a].size() - 1);
     }
     bool assign_level(int src, int sink) {
+        int t = 0;
         memset(&lvl[0], 0, sizeof(lvl[0]) * n);
-        queue<int> q;
-        q.push(src);
         lvl[src] = 1;
-        while (!q.empty()) {
-            int cur = q.front();
-            q.pop();
-            for (auto i : adj[cur]) {
-                if (!lvl[i.nxt] && i.res > 0) {
-                    lvl[i.nxt] = lvl[cur] + 1;
-                    q.push(i.nxt);
+        q[t++] = src;
+        for (int h = 0; h < t && !lvl[sink]; h++) {
+            int cur = q[h];
+            for (auto& e : graph[cur]) {
+                if (l[e.nxt] == 0 && e.res > 0) {
+                    lvl[e.nxt] = l[cur] + 1;
+                    q[t++] = e.nxt;
                 }
             }
         }
-        return lvl[sink];
+        return lvl[sink] != 0;
     }
     flow_t block_flow(int cur, int sink, flow_t cur_flow) {
         if (cur == sink) return cur_flow;
