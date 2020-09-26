@@ -1,6 +1,3 @@
-#include <bits/stdc++.h>
-using namespace std;
-
 struct Dinic {
     typedef int flow_t;
 
@@ -66,20 +63,3 @@ struct Dinic {
         return ans;
     }
 };
-
-int main() {
-    ios::sync_with_stdio(0), cin.tie(0);
-    int n; cin >> n;
-    Dinic d(52);
-    for (int i = 0; i < n; i++) {
-        int k;
-        char c1, c2;
-        cin >> c1 >> c2 >> k;
-        int a = islower(c1) ? c1 - 'a' + 26 : c1 - 'A';
-        int b = islower(c2) ? c2 - 'a' + 26 : c2 - 'A';
-        d.add_edge(a, b, k, k);
-    }
-    cout << d.solve(0, 25) << endl;
-}
-
-// 백준 6086번: 최대 유량
