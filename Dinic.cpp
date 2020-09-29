@@ -4,7 +4,7 @@ struct Dinic {
     struct Edge {
         int nxt;
         flow_t res;  // residual flow
-        size_t inv;  // inversed edge index
+        size_t inv;  // inverse edge index
         Edge(int n, flow_t r, size_t v) : nxt(n), res(r), inv(v) {}
     };
 
@@ -27,9 +27,9 @@ struct Dinic {
         q[t++] = src;
         for (int h = 0; h < t && !lvl[sink]; h++) {
             int cur = q[h];
-            for (auto& e : graph[cur]) {
-                if (l[e.nxt] == 0 && e.res > 0) {
-                    lvl[e.nxt] = l[cur] + 1;
+            for (auto& e : adj[cur]) {
+                if (lvl[e.nxt] == 0 && e.res > 0) {
+                    lvl[e.nxt] = lvl[cur] + 1;
                     q[t++] = e.nxt;
                 }
             }
