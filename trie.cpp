@@ -18,7 +18,7 @@ struct trie
     vector<vertex> data;
     int head;//data[head]: head의 vertex
     int size; // 단어의 총 개수
-    trie(int cap = 30'000)//trie자체가 이미 용량을 많이 잡아먹음으로 생성자에서 cap을 잘 지정해줌으로써 매모리를 아낀다. 단어의 갯수 * 단어의 길이
+    trie(int cap = 30'000)//trie자체가 이미 용량을 많이 잡아먹음으로 생성자에서 cap을 잘 지정해줌으로써 매모리를 아낀다. 단어의 갯수 * 단어의 길이 + 1
     {
         data.reserve(cap);
         head = 0;
