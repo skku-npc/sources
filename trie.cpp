@@ -6,7 +6,7 @@ struct trie
     }
     struct vertex
     {
-        int nxt[26];
+        int nxt[26]; // 알파벳 갯수
         int finish; // if not finish, -1
         //0based를 가정하는 것
         vertex()
@@ -18,7 +18,7 @@ struct trie
     vector<vertex> data;
     int head;//data[head]: head의 vertex
     int size; // 단어의 총 개수
-    trie(int cap = 30'000)//trie자체가 이미 용량을 많이 잡아먹음으로 생성자에서 cap을 잘 지정해줌으로써 매모리를 아낀다.
+    trie(int cap = 30'000)//trie자체가 이미 용량을 많이 잡아먹음으로 생성자에서 cap을 잘 지정해줌으로써 매모리를 아낀다. 단어의 갯수 * 단어의 길이
     {
         data.reserve(cap);
         head = 0;
