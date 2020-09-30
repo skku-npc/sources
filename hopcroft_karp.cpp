@@ -5,7 +5,7 @@ struct hopcroft_karp{
     vector<int> Y;//Y[y] = 집합 Y의 원소 y가 어떤 x에 대응되어 있는가?
     vector<vector<int>> adj; // X -> Y 형태의 이분그래프, X를 Y로 대응한다.
     vector<int> dist;
-    hopcroft_karp(int nx, int ny) : nx(nx), ny(ny){
+    hopcroft_karp(int nx, int ny) : nx(nx), ny(ny){ //집합 X와 Y의 
         X.resize(nx);
         Y.resize(ny);
         adj.resize(nx);
