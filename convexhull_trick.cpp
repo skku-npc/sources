@@ -21,7 +21,15 @@ struct convexhull_trick
     };
     vector<line> stk;
     int qptr;
-    convexhull_trick() : qptr(0){}
+    convexhull_trick(int capacity = 100'000) : qptr(0)
+    {
+        stk.reserve(capacity);
+    }
+    void init()
+    {
+        stk.clear();
+        qptr = 0;
+    }
     void push_line(line l)
     {
         while(stk.size() > 1)
