@@ -41,6 +41,7 @@ struct convexhull_trick
         }
         if(!stk.empty()) l.start_x = make_pair(stk.back().b - l.b, l.a - stk.back().a);
         stk.push_back(l);
+        if (qptr >= stk.size()) qptr = stk.size() - 1;
     }
     void push_line(long long a, long long b)
     {
