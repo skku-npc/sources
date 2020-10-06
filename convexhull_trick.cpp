@@ -40,6 +40,7 @@ struct convexhull_trick
             stk.pop_back();
         }
         if(!stk.empty()) l.start_x = make_pair(stk.back().b - l.b, l.a - stk.back().a);
+        else l.start_x = make_pair(0LL, 0LL);
         stk.push_back(l);
         if (qptr >= stk.size()) qptr = stk.size() - 1;
     }
