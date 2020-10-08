@@ -1,18 +1,18 @@
-struct Dinic {
+struct dinic {
     typedef int flow_t;
 
-    struct Edge {
+    struct edge {
         int nxt;
         flow_t res;  // residual flow
         size_t inv;  // inverse edge index
-        Edge(int n, flow_t r, size_t v) : nxt(n), res(r), inv(v) {}
+        edge(int n, flow_t r, size_t v) : nxt(n), res(r), inv(v) {}
     };
 
     int n;
-    vector<vector<Edge>> adj;
+    vector<vector<edge>> adj;
     vector<int> q, lvl, start;
 
-    Dinic(int _n) {
+    dinic(int _n) {
         n = _n;
         adj.resize(n);
     }

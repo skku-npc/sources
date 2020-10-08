@@ -1,14 +1,13 @@
-void manachers(const char* str, int len, vector<int>& A) // 사용 전 #을 앞뒤로 꼼꼼히 추가하는 것을 잊지 말자
-{
-    A.resize(len);
+void manacher(const char* str, int len, vector<int>& a) {  // 사용 전 문자 앞뒤로 # 추가하기
+    a.resize(len);
     int p = 0;
-    for (int i = 0; i < len; ++i)
-    {
-        if (i <= p + A[p])
-            A[i] = min(A[2*p - i], p + A[p] - i); // 점 p를 기준으로 대칭
-        else A[i] = 0;
-        while(i - A[i] - 1 >= 0 && i + A[i] + 1 < len && str[i - A[i] - 1] == str[i + A[i] + 1]) // 확장
-            ++A[i];
-        if(p + A[p] < i + A[i]) p = i; //p = 최대 커버
+    for (int i = 0; i < len; ++i) {
+        if (i <= p + a[p])
+            a[i] = min(a[2 * p - i], p + a[p] - i);  // 점 p를 기준으로 대칭
+        else
+            a[i] = 0;
+        while (i - a[i] - 1 >= 0 && i + a[i] + 1 < len && str[i - a[i] - 1] == str[i + a[i] + 1])  // 확장
+            ++a[i];
+        if (p + a[p] < i + a[i]) p = i;  // p = 최대 커버
     }
 }
