@@ -1,7 +1,8 @@
 int n;
-stack<int> &st;
+stack<int> st;
 vector<bool> check;
 vector<vector<int>> adj, adj_r;
+
 void dfs(int curr) {
     check[curr] = true;
     for (auto& next : adj[curr])
@@ -12,7 +13,7 @@ set<set<int>> kosaraju() {
     check.resize(n);
     for (int i = 0; i < n; i++)
         if (!check[i]) dfs(i);
-    check = vector<bool>(n + 1);
+    check = vector<bool>(n);
     set<set<int>> ret;
     while (!st.empty()) {
         int node = st.top();
