@@ -9,28 +9,29 @@ void dfs(int curr) {
         if (!check[next]) dfs(next);
     st.push(curr);
 }
-set<set<int>> kosaraju() {
+vector<vector<int>> kosaraju() {
     check.resize(n);
     for (int i = 0; i < n; i++)
         if (!check[i]) dfs(i);
     check = vector<bool>(n);
-    set<set<int>> ret;
+    vector<vector<int>> ret;
+    stack<int> sk;
+    vector<int> comp;
     while (!st.empty()) {
         int node = st.top();
         st.pop();
         if (check[node]) continue;
-        set<int> se;
-        stack<int> sk;
         sk.push(node);
+        comp.clear();
         while (!sk.empty()) {
             int curr = sk.top();
             sk.pop();
             check[curr] = true;
-            se.insert(curr);
+            comp.push_back(curr);
             for (auto next : adj_r[curr])
                 if (!check[next]) sk.push(next);
         }
-        ret.insert(se);
+        ret.push_back(comp);
     }
     return ret;
 }
