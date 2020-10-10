@@ -12,7 +12,7 @@ struct trie {
     vector<vertex> data;
     int head; // data[head]: head의 vertex
     int size; // 단어의 총 개수
-    trie(int cap = 30'000) {
+    trie(int cap = 30000) {
         // trie 자체가 용량을 많이 잡아먹기에 생성자에서 cap을 잘 지정하여 매모리를 아낀다
         // cap = (단어의 갯수 * 단어의 길이 + 1)
         data.reserve(cap); 
