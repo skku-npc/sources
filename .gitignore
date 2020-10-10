@@ -1,0 +1,11 @@
+.idea
+.vscode
+
+# Tex
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.synctex.gz
+*.toc
+*.xdv

@@ -1,0 +1,133 @@
+\documentclass[10pt, a4paper]{article}
+% \documentclass[10pt, landscape, a4paper, twocolumn]{article}
+
+\setlength{\columnsep}{20pt}
+
+\usepackage[left=1.0cm, right=1.0cm, top=1.5cm, bottom=1.0cm, headsep=0.4cm]{geometry}
+\usepackage{kotex}
+\usepackage{listings}
+\usepackage{fancyhdr}
+\usepackage{fontspec}
+\usepackage{xcolor}
+
+\pagestyle{fancy}
+\fancyhead[R]{\thepage}
+\fancyhead[L]{SungKyunKwan University - RightButWrong}
+
+\setmonofont{CascadiaCode.ttf}
+% \setmainhangulfont{NanumMyeongjo}
+
+\definecolor{grey}{RGB}{162, 162, 162}
+
+\lstset{
+    basicstyle=\footnotesize\ttfamily,
+    breaklines=true,
+    breakindent=1.1em
+}
+
+\lstdefinestyle{mycpp}{
+  language=[GNU]C++,
+  keywordstyle=\color{blue},
+  commentstyle=\color{grey},
+  stringstyle=\color{orange},
+}
+
+
+
+\begin{document}
+\tableofcontents
+
+
+
+\section{Math}
+
+\subsection{Power, Little Fermat Theorem, Combination}
+\lstinputlisting[style=mycpp]{math.cpp}
+
+\subsection{Extended Euclidean Algorithm}
+\lstinputlisting[style=mycpp]{extented_euclidean.cpp}
+
+\subsection{Euler's Phi Function}
+\lstinputlisting[style=mycpp]{euler_phi.cpp}
+
+\subsection{FFT(Fast Fourier Transform)}
+\lstinputlisting[style=mycpp]{fft.cpp}
+
+
+
+\section{String}
+
+\subsection{Suffix Array}
+\lstinputlisting[style=mycpp]{suffix_array.cpp}
+
+\subsection{KMP}
+\lstinputlisting[style=mycpp]{kmp.cpp}
+
+\subsection{Trie}
+\lstinputlisting[style=mycpp]{trie.cpp}
+
+\subsection{Manacher's Algorithm}
+\lstinputlisting[style=mycpp]{manacher.cpp}
+
+
+
+\section{Data Structure}
+
+\subsection{Segment Tree with Lazy Propagation}
+\lstinputlisting[style=mycpp]{segment_tree.cpp}
+
+\subsection{Ordered Set}
+\lstinputlisting[style=mycpp]{ordered_set.cpp}
+
+\subsection{Merge Sort Tree}
+\lstinputlisting[style=mycpp]{merge_sort_tree.cpp}
+
+\subsection{Heavy Light Decomposition}
+\lstinputlisting[style=mycpp]{hld.cpp}
+
+
+
+\section{Graph}
+
+% \subsection{SCC: Tarjan's Algorithm}
+% \lstinputlisting[style=mycpp]{}
+
+\subsection{SCC: Kosaraju's Algorithm}
+\lstinputlisting[style=mycpp]{kosaraju.cpp}
+
+% \subsection{Centroid of Tree}
+% \lstinputlisting[style=mycpp]{}
+
+
+
+\section{Flow}
+
+\subsection{Dinic}
+\lstinputlisting[style=mycpp]{dinic.cpp}
+
+\subsection{Hopcroft-Karp}
+\lstinputlisting[style=mycpp]{hopcroft_karp.cpp}
+
+% \subsection{MCMF(Min-Cost Max-Flow)}
+% \lstinputlisting[style=mycpp]{}
+
+
+
+\section{DP}
+
+\subsection{Convex Hull Trick}
+\lstinputlisting[style=mycpp]{convexhull_trick.cpp}
+
+% \subsection{Knuth Optimization}
+% \lstinputlisting[style=mycpp]{}
+
+
+
+\section{Geometry}
+
+\subsection{CCW(CounterClockWise)}
+\lstinputlisting[style=mycpp]{ccw.cpp}
+
+
+
+\end{document}
